@@ -18,29 +18,27 @@ DRAW = -2
 
 app = FastAPI()
 
-class Item(BaseModel):
+class Game(BaseModel):
     player_name: str
     game_id: str
     board: List[List[str]]  # List of lists of strings
     move: List[int]  # List of integers with length 4
 
-
 @app.get("/")
 async def read_root():
-    return {"Message": "NY Chess AI player engine"}
+    return {"Message": "NY Chess AI player engine by Nicholas Yukio"}
 
 @app.get("/leaderboard/")
 async def leaderboard():
-    return {"Message": "This endpoint will retrieve the leaderboard"}
+    return {"Message": "This endpoint will retrieve the leaderboard. It is not implemented yet."}
 
-
-@app.post("/items/")
-async def create_item(item: Item):
+@app.post("/play/")
+async def play(game: Game):
     arbiter = arb.arbiter(ARBITER)
     arbiter.history.clear()
-    arbiter.board = item.board
+    arbiter.board = game.board
     player_upper = reint_minimax.reint_minimax(UPPER) # AI
-    human_move = item.move
+    human_move = game.move
     game_status = arbiter.verify_end_of_game()
     if game_status == GAME_NOT_FINISHED:
         if arbiter.make_move(human_move[0], human_move[1], human_move[2], human_move[3]) == False:
