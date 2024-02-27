@@ -42,7 +42,7 @@ async def play(game: Game):
     game_status = arbiter.verify_end_of_game()
     if game_status == GAME_NOT_FINISHED:
         if arbiter.make_move(human_move[0], human_move[1], human_move[2], human_move[3]) == False:
-            {"result": "error", "message": "Invalid human move", "board": arbiter.board, "AI move": [-1, -1, -1, -1]}
+            return {"result": "error", "message": "Invalid human move", "board": arbiter.board, "AI move": [-1, -1, -1, -1]}
         else:
             player_upper.update_board(arbiter.board)
             AI_move = player_upper.choose_move(arbiter)
