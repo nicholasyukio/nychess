@@ -16,10 +16,7 @@ UPPER_VICTORY = 1
 GAME_NOT_FINISHED = -1
 DRAW = -2
 
-
-
 app = FastAPI()
-
 
 class Item(BaseModel):
     player_name: str
