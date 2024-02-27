@@ -27,7 +27,11 @@ class Item(BaseModel):
 
 @app.get("/")
 async def read_root():
-    return {"Hello": "World"}
+    return {"Message": "NY Chess AI player engine"}
+
+@app.get("/leaderboard/")
+async def leaderboard():
+    return {"Message": "This endpoint will retrieve the leaderboard"}
 
 
 @app.post("/items/")
@@ -37,7 +41,7 @@ async def create_item(item: Item):
     arbiter.board = item.board
     player_upper = reint_minimax.reint_minimax(UPPER) # AI
     human_move = item.move
-    game_status = arb.verify_end_of_game()
+    game_status = arbiter.verify_end_of_game()
     if game_status == GAME_NOT_FINISHED:
         if arbiter.make_move(human_move[0], human_move[1], human_move[2], human_move[3]) == False:
             {"result": "error", "message": "Invalid human move", "board": arbiter.board, "AI move": [-1, -1, -1, -1]}
@@ -55,7 +59,7 @@ async def create_item(item: Item):
                     piece_moved = player_upper.board[i][j]
                     points = player_upper.award_points(piece_moved, i_new, j_new)
                     player_upper.history.append([player_upper.board, i, j, i_new, j_new, points])
-                    game_status = arb.verify_end_of_game()
+                    game_status = arbiter.verify_end_of_game()
                     if game_status == GAME_NOT_FINISHED:
                         return {"result": "continue", "message": "", "board": arbiter.board, "AI move": AI_move}
                     else:
@@ -66,7 +70,7 @@ async def create_item(item: Item):
                         if game_status == DRAW:
                             return {"result": "ended", "message": "Game ended with a draw", "board": arbiter.board, "AI move": AI_move}
             else:
-                return {"Error": "AI move is invalid"}
+                return {"result": "error", "message": "Chosen AI move is invalid", "board": arbiter.board, "AI move": AI_move}
     else:
         if game_status == LOWER_VICTORY:
             return {"result": "ended", "message": "LOWER / PLAYER 0 / WHITE wins", "board": arbiter.board, "AI move": [-1, -1, -1, -1]}
