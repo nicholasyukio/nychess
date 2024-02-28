@@ -1,0 +1,91 @@
+Test request bodies for testing the API with POST request with /play/ endpoint
+
+1: Initial game configuration, with a valid move for LOWER player
+
+{
+  "player_name": "Nicholas",
+  "game_id": "1",
+  "board": [
+    ["R", "H", "B", "Q", "K", "B", "H", "R"],
+    ["P", "P", "P", "P", "P", "P", "P", "P"],
+    [" ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " "],
+    ["p", "p", "p", "p", "p", "p", "p", "p"],
+    ["r", "h", "b", "q", "k", "b", "h", "r"]
+  ],
+  "move": [7, 6, 5, 5]
+}
+
+2: Initial game configuration, with an invalid move for LOWER PLAYER
+
+{
+  "player_name": "Nicholas",
+  "game_id": "1",
+  "board": [
+    ["R", "H", "B", "Q", "K", "B", "H", "R"],
+    ["P", "P", "P", "P", "P", "P", "P", "P"],
+    [" ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " "],
+    ["p", "p", "p", "p", "p", "p", "p", "p"],
+    ["r", "h", "b", "q", "k", "b", "h", "r"]
+  ],
+  "move": [7, 6, 3, 5]
+}
+
+3: Game configuration in which the game ended with UPPER victory (move does not matter in this case)
+
+{
+  "player_name": "Nicholas",
+  "game_id": "1",
+  "board": [
+    [" ", " ", " ", " ", " ", " ", " ", " "],
+    ["P", " ", " ", " ", "B", " ", "P", "P"],
+    [" ", " ", " ", " ", " ", " ", " ", "K"],
+    [" ", " ", "k", " ", "H", " ", " ", " "],
+    [" ", "R", " ", "P", " ", " ", "p", " "],
+    [" ", " ", " ", "p", "H", "p", " ", " "],
+    ["p", "p", " ", " ", " ", " ", " ", "p"],
+    ["r", "h", "b", " ", " ", " ", " ", "r"]
+  ],
+  "move": [7, 6, 3, 5]
+}
+
+4: Game configuration in which the game ended with LOWER victory (move does not matter in this case)
+
+{
+  "player_name": "Nicholas",
+  "game_id": "1",
+  "board": [
+    ["K", " ", "r", " ", " ", " ", " ", " "],
+    ["P", " ", " ", " ", " ", " ", "P", "P"],
+    [" ", " ", " ", "B", " ", " ", " ", " "],
+    [" ", " ", " ", "p", " ", " ", " ", " "],
+    [" ", " ", "p", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", "p", " ", "k"],
+    ["p", " ", " ", " ", "R", " ", " ", "p"],
+    [" ", "r", " ", " ", " ", " ", " ", " "]
+  ],
+  "move": [7, 6, 3, 5]
+}
+
+5: Game configuration in which the game WILL end with LOWER victory
+
+{
+  "player_name": "Nicholas",
+  "game_id": "1",
+  "board": [
+    ["K", " ", " ", " ", " ", " ", " ", " "],
+    ["P", " ", "r", " ", " ", " ", "P", "P"],
+    [" ", " ", " ", "B", " ", " ", " ", " "],
+    [" ", " ", " ", "p", " ", " ", " ", " "],
+    [" ", " ", "p", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", "p", " ", "k"],
+    ["p", " ", " ", " ", "R", " ", " ", "p"],
+    [" ", "r", " ", " ", " ", " ", " ", " "]
+  ],
+  "move": [1, 2, 0, 2]
+}
