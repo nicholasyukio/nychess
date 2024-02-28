@@ -46,11 +46,11 @@ async def play(game: Game):
         else:
             game_status = arbiter.verify_end_of_game()
             if game_status == LOWER_VICTORY:
-                return {"result": "ended", "message": "LOWER / PLAYER 0 / WHITE wins", "board": arbiter.board, "AI move": AI_move}
+                return {"result": "ended", "message": "LOWER / PLAYER 0 / WHITE wins", "board": arbiter.board, "AI move": [-1, -1, -1, -1]}
             if game_status == UPPER_VICTORY:
-                return {"result": "ended", "message": "UPPER / PLAYER 1 / BLACK wins", "board": arbiter.board, "AI move": AI_move}
+                return {"result": "ended", "message": "UPPER / PLAYER 1 / BLACK wins", "board": arbiter.board, "AI move": [-1, -1, -1, -1]}
             if game_status == DRAW:
-                return {"result": "ended", "message": "Game ended with a draw", "board": arbiter.board, "AI move": AI_move}
+                return {"result": "ended", "message": "Game ended with a draw", "board": arbiter.board, "AI move": [-1, -1, -1, -1]}
             player_upper.update_board(arbiter.board)
             AI_move = player_upper.choose_move(arbiter)
             if AI_move[0] != -1:
