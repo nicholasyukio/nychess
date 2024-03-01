@@ -127,7 +127,7 @@ class reint_minimax(mind):
                 self.intended_future_moves.pop(0)
                 return next_move[0]
             # If no intended future moves, then check the best move using the minimax algorithm
-            sc = self.minimax(2, -999999, +999999, LOWER, LOWER)
+            sc = self.minimax(3, -999999, +999999, LOWER, LOWER)
             print(f"Best move for minimax: {sc[0]}")
             self.intended_future_moves.extend(sc[2:])
             return sc[0][0]
@@ -187,7 +187,7 @@ class reint_minimax(mind):
                 self.intended_future_moves.pop(0)
                 return next_move[0]
             # If no intended future moves, then check the best move using the minimax algorithm
-            sc = self.minimax(2, -999999, +999999, UPPER, UPPER)
+            sc = self.minimax(3, -999999, +999999, UPPER, UPPER)
             print(f"Best move for minimax: {sc[0]}")
             self.intended_future_moves.extend(sc[2:])
             return sc[0][0]
