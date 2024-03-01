@@ -26,6 +26,7 @@ class Game(BaseModel):
     board: List[List[str]]  # List of lists of strings
     move: List[int]  # List of integers with length 4
 
+# This function is an attempt to simplify code. I shall continue later.
 def ended_game_return(game_status, arbiter):
     if game_status == LOWER_VICTORY:
         return {"result": "ended", "message": "LOWER / PLAYER 0 / WHITE wins", "board": arbiter.board, "AI move": [-1, -1, -1, -1]}
@@ -37,7 +38,7 @@ def ended_game_return(game_status, arbiter):
 
 @app.get("/")
 async def info():
-    return {"Message": "NY Chess AI player engine by Nicholas Yukio"}
+    return {"name": "NY Chess AI player engine", "shortname": "nychess", "author": "Nicholas Yukio", "version": "1.0.0"}
 
 @app.get("/leaderboard/")
 async def leaderboard():
@@ -62,6 +63,7 @@ async def play(game: Game):
                 player_upper.intended_future_moves = []   
     else:
         print(f"Game {game_id} not found.")
+        start_time = datetime.utcnow()
     game_status = arbiter.verify_end_of_game()
     if game_status == GAME_NOT_FINISHED:
         if arbiter.make_move(human_move[0], human_move[1], human_move[2], human_move[3]) == False:
