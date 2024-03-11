@@ -1,6 +1,7 @@
 from typing import Union, List
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 import agent
@@ -19,6 +20,14 @@ GAME_NOT_FINISHED = -1
 DRAW = -2
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class Game(BaseModel):
     player_name: str
