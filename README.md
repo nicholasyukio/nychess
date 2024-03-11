@@ -1,7 +1,7 @@
 # AI Chess player
 # Nicholas Yukio Menezes Sugimoto
 # 04 October 2023
-# Last update: 01 March 2024
+# Last update: 11 March 2024
 
 This program combines many techniques such as minimax with pruning to create an AI chess player.
 
