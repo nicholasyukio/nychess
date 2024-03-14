@@ -820,11 +820,18 @@ class mind:
         # Calculates and returns the difference (UPPER-LOWER)
         return points_upper - points_lower
     
-
-        
+    def verify_reverse_moves(self, i, j, i_new, j_new):
+        for move_reg in self.history:
+            board = move_reg[0]
+            move = [move_reg[1], move_reg[2], move_reg[3], move_reg[4]]
+            piece = board[move[0]][move[1]]
+            if move[0] == i_new and move[1] == j_new and move[2] == i and move[3] == j and piece == self.board[i][j]:
+                return True
+        return False
     
     def minimax(self, depth, alpha, beta, player, acting_player):
-        def determine_score_gain(self, move):
+        N = 2  # Change this to the desired number of elements
+        def determine_score_gain(move):
             self.list_possible_moves(True, self.player)
             # temporarily change the board to list the possible adversary moves
             initial_score = self.score()
@@ -859,8 +866,8 @@ class mind:
                 minEval = +999999
                 possible_moves = copy.copy(self.possible_moves_lower)
                 possible_moves = sorted(possible_moves, key=determine_score_gain, reverse=False)
-                N = 3  # Change this to the desired number of elements
                 selected_moves = possible_moves[:N]
+                #for move in possible_moves:
                 for move in selected_moves:
                     piece_initial = self.board[move[0]][move[1]]
                     piece_final = self.board[move[2]][move[3]]
@@ -889,10 +896,10 @@ class mind:
                     return [[[0, 0, 0, 0], self.score()]]
                 possible_moves = copy.copy(self.possible_moves_lower)
                 possible_moves = sorted(possible_moves, key=determine_score_gain, reverse=False)
-                N = 3  # Change this to the desired number of elements
                 selected_moves = possible_moves[:N]
                 max_points = -999999
                 best_move = []
+                #for move in possible_moves:
                 for move in selected_moves:
                     points = self.award_points(self.board[move[0]][move[1]], move[2], move[3])
                     if points > max_points:
@@ -919,8 +926,8 @@ class mind:
                 maxEval = -999999
                 possible_moves = copy.copy(self.possible_moves_upper)
                 possible_moves = sorted(possible_moves, key=determine_score_gain, reverse=True)
-                N = 3  # Change this to the desired number of elements
                 selected_moves = possible_moves[:N]
+                #for move in possible_moves:
                 for move in selected_moves:
                     piece_initial = self.board[move[0]][move[1]]
                     piece_final = self.board[move[2]][move[3]]
@@ -949,10 +956,10 @@ class mind:
                     return [[[0, 0, 0, 0], self.score()]]
                 possible_moves = copy.copy(self.possible_moves_upper)
                 possible_moves = sorted(possible_moves, key=determine_score_gain, reverse=True)
-                N = 3  # Change this to the desired number of elements
                 selected_moves = possible_moves[:N]
                 max_points = -999999
                 best_move = []
+                #for move in possible_moves:
                 for move in selected_moves:
                     points = self.award_points(self.board[move[0]][move[1]], move[2], move[3])
                     if points > max_points:

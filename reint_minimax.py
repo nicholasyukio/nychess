@@ -55,16 +55,6 @@ class reint_minimax(mind):
                 random_sequence = random.choice(selected_openings)
                 return random_sequence[number_of_moves]
 
-
-    def verify_reverse_moves(self, i, j, i_new, j_new):
-        for move_reg in self.history:
-            board = move_reg[0]
-            move = [move_reg[1], move_reg[2], move_reg[3], move_reg[4]]
-            piece = board[move[0]][move[1]]
-            if move[0] == i_new and move[1] == j_new and move[2] == i and move[3] == j and piece == self.board[i][j]:
-                return True
-        return False
-
     def choose_move(self, arbiter):
         game_history = arbiter.history
         number_of_moves = len(game_history)
