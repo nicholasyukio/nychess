@@ -10,7 +10,7 @@ UPPER = 1 # AI
 
 agent_lower = agent.mind(LOWER)
 start_time = time.time()
-sc = agent_lower.minimax(7, -999999, +999999, LOWER, LOWER)
+sc = agent_lower.minimax(5, -999999, +999999, LOWER, LOWER)
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"Eval: {sc}")

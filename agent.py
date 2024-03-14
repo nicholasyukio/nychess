@@ -830,7 +830,8 @@ class mind:
         return False
     
     def minimax(self, depth, alpha, beta, player, acting_player):
-        N = 2  # Change this to the desired number of elements
+        N = 2  # Number of moves analyzed of the acting player
+        M = 1 # Number of moves analyzed of the opponent player
         def determine_score_gain(move):
             self.list_possible_moves(True, self.player)
             # temporarily change the board to list the possible adversary moves
@@ -896,7 +897,7 @@ class mind:
                     return [[[0, 0, 0, 0], self.score()]]
                 possible_moves = copy.copy(self.possible_moves_lower)
                 possible_moves = sorted(possible_moves, key=determine_score_gain, reverse=False)
-                selected_moves = possible_moves[:N]
+                selected_moves = possible_moves[:M]
                 max_points = -999999
                 best_move = []
                 #for move in possible_moves:
@@ -956,7 +957,7 @@ class mind:
                     return [[[0, 0, 0, 0], self.score()]]
                 possible_moves = copy.copy(self.possible_moves_upper)
                 possible_moves = sorted(possible_moves, key=determine_score_gain, reverse=True)
-                selected_moves = possible_moves[:N]
+                selected_moves = possible_moves[:M]
                 max_points = -999999
                 best_move = []
                 #for move in possible_moves:
