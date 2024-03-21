@@ -47,7 +47,7 @@ def ended_game_return(game_status, arbiter):
 
 @app.get("/")
 async def info():
-    return {"name": "NY Chess AI player engine", "shortname": "nychess", "author": "Nicholas Yukio", "version": "1.0.0"}
+    return {"name": "NY Chess AI player engine", "shortname": "nychess", "author": "Nicholas Yukio", "version": "1.0.0", "last_update": "21MAR24-15h35UTC-3"}
 
 @app.get("/leaderboard/")
 async def leaderboard():
