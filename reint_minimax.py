@@ -107,20 +107,21 @@ class reint_minimax(mind):
             if min_score_gain < -SCORE_GAIN_THRESHOLD:
                 print(f"Best move for score: {best_move_for_score}")
                 return best_move_for_score
-            if min_value_gain < -VALUE_GAIN_THRESHOLD:
+            #if min_value_gain < -VALUE_GAIN_THRESHOLD:
+            else:
                 print(f"Best move for value: {best_move_for_value}")
                 return best_move_for_value
-            # If no immediate rewards or threats, then check the best move using the minimax algorithm
-            if len(self.intended_future_moves) > 1:
-                print(f"Intended future move: {self.intended_future_moves[0][0]}")
-                next_move = self.intended_future_moves.pop(0)
-                self.intended_future_moves.pop(0)
-                return next_move[0]
-            # If no intended future moves, then check the best move using the minimax algorithm
-            sc = self.minimax(3, -999999, +999999, LOWER, LOWER)
-            print(f"Best move for minimax: {sc[0]}")
-            self.intended_future_moves.extend(sc[2:])
-            return sc[0][0]
+        """             # If no immediate rewards or threats, then check the best move using the minimax algorithm
+                    if len(self.intended_future_moves) > 1:
+                        print(f"Intended future move: {self.intended_future_moves[0][0]}")
+                        next_move = self.intended_future_moves.pop(0)
+                        self.intended_future_moves.pop(0)
+                        return next_move[0]
+                    # If no intended future moves, then check the best move using the minimax algorithm
+                    sc = self.minimax(3, -999999, +999999, LOWER, LOWER)
+                    print(f"Best move for minimax: {sc[0]}")
+                    self.intended_future_moves.extend(sc[2:])
+                    return sc[0][0] """
         if self.player == UPPER:
             # Checks if the game is in the opening phase
             if number_of_moves < NUMBER_OF_MOVES_OPENING_PHASE:
@@ -167,18 +168,19 @@ class reint_minimax(mind):
             if max_score_gain > SCORE_GAIN_THRESHOLD:
                 print(f"Best move for score: {best_move_for_score}")
                 return best_move_for_score
-            if max_value_gain > VALUE_GAIN_THRESHOLD:
+            #if max_value_gain > VALUE_GAIN_THRESHOLD:
+            else:
                 print(f"Best move for value: {best_move_for_value}")
                 return best_move_for_value
-            # If no immediate rewards or threats, then checks if there are intended future moves saved earlier
-            if len(self.intended_future_moves) > 1:
-                print(f"Intended future move: {self.intended_future_moves[0][0]}")
-                next_move = self.intended_future_moves.pop(0)
-                self.intended_future_moves.pop(0)
-                return next_move[0]
-            # If no intended future moves, then check the best move using the minimax algorithm
-            sc = self.minimax(3, -999999, +999999, UPPER, UPPER)
-            print(f"Best move for minimax: {sc[0]}")
-            self.intended_future_moves.extend(sc[2:])
-            return sc[0][0]
+            """             # If no immediate rewards or threats, then checks if there are intended future moves saved earlier
+                        if len(self.intended_future_moves) > 1:
+                            print(f"Intended future move: {self.intended_future_moves[0][0]}")
+                            next_move = self.intended_future_moves.pop(0)
+                            self.intended_future_moves.pop(0)
+                            return next_move[0]
+                        # If no intended future moves, then check the best move using the minimax algorithm
+                        sc = self.minimax(3, -999999, +999999, UPPER, UPPER)
+                        print(f"Best move for minimax: {sc[0]}")
+                        self.intended_future_moves.extend(sc[2:])
+                        return sc[0][0] """
         return [-1, -1, -1, -1]
