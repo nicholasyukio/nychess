@@ -8,6 +8,7 @@ import agent
 import arbiter as arb
 import reint_minimax
 import game_saving as gs
+import ssl
 from datetime import datetime
 
 LOWER = 0 # Human (or AI under training)
@@ -20,6 +21,9 @@ GAME_NOT_FINISHED = -1
 DRAW = -2
 
 app = FastAPI()
+
+ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+ssl_context.load_cert_chain('fullchain.pem', keyfile='privkey.pem')
 
 app.add_middleware(
     CORSMiddleware,
