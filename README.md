@@ -63,4 +63,4 @@ The following files were moved to old_ml folder, and they consist of tests used 
 # Commands to run in the remote server (reminder)
 git pull origin main
 source .venv/bin/activate
-nohup uvicorn api:app --reload &
+nohup uvicorn api:app --ssl-keyfile privkey.pem --ssl-certfile fullchain.pem--reload &
